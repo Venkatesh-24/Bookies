@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@500;600;800&display=swap"
+        rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="contain">
+        <div class="login">
+            <form>
+            <h1>Welcome!</h1>
+                <small>Login to your account to start reading books !!</small>
+                <label for="email">Email</label>
+                <input placeholder="Enter Email" type="text" name="" id="email">
+                <label for="pass">Password</label>
+                <input placeholder="Enter Password" type="password" name="" id="password">
+                <div class="mor">
+                    <input class="check" type="checkbox"><label for="check">Remember Me</label>
+                    <a href="">Forgot Password?</a>
+                </div>
+                <input class="log" type="button" name="" value="Login" id="submit" onclick="validate()">
+
+                <div class="container">
+                    <div class="line"></div>
+                    <p>Or</p>
+                    <div class="line"></div>
+                </div>
+
+                <div class="op" align="center" style="
+                padding-left: 97px;
+            ">
+                    <button  id="google-signin-btn" onclick="signInWithGoogle()" >
+                        <img src="https://companieslogo.com/img/orig/GOOG-0ed88f7c.png?t=1633218227" alt="Google Logo"
+                            class="Google-logo"> Google
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="image">
+            <h1>New here? Sign up to begin !</h1>
+            <button class="sign" onclick="window.location.href='signup.html';">Sign Up</button>
+        </div>
+
+    </div>
+    <div id="snackbar"></div>
+    <script >
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyB94dvOtIDVb_CMqwUmvLlcA6L3HP_niag",
+          authDomain: "bookish-bab6a.firebaseapp.com",
+          projectId: "bookish-bab6a",
+          storageBucket: "bookish-bab6a.appspot.com",
+          messagingSenderId: "432983612019",
+          appId: "1:432983612019:web:8745e6af4c1333fabfa806",
+          measurementId: "G-VB6GGB6YFM"
+        };
+      
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+       
+        function signInWithGoogle() {
+         var provider = new firebase.auth.GoogleAuthProvider();
+
+         firebase.auth().signInWithPopup(provider)
+           .then(function(result) {
+             // User signed in successfully
+             var user = result.user;
+             console.log("Signed in user:", user);
+           })
+           .catch(function(error) {
+             // Handle errors
+             console.error("Error signing in:", error);
+           });
+       }
+</script>
+<script>
+        function showSuccessToast() {
+        // toast in green color
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+
+        function validate()
+        {
+            var email = document.getElementById('email').value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            var password = document.getElementById('password').value;
+
+              if (!emailPattern.test(email)) {
+                snackbar.innerHTML ='Email is not valid';
+                showSuccessToast();
+                return
+              }
+
+              if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password) ||!/[!@#$%^&*]/.test(password)) {
+                snackbar.innerHTML = 'Password is not valid';
+                showSuccessToast();
+                return;
+              }
+
+              localStorage.setItem('isLoggedIn', 'true');
+              console.log(localStorage.getItem('isLoggedIn'));
+              window.location.href = 'userPage.html';
+
+        }
+                  
+        function direct() {
+            window.location.href = 'index.html';
+        } 
+        
+
+</script>
+</body>
+
+</html>

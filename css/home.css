@@ -1,0 +1,155 @@
+body
+{
+    font-family: "Montserrat";
+}
+
+#title
+{
+    background-color: #ff4c68;
+    color: #fff;
+}
+
+h1
+{
+    font-family: "Montserrat";
+    font-weight: bold;
+    font-size: 375%;
+    line-height: 1.5;
+}
+
+h2
+{
+    font-family: "Montserrat";
+    font-weight: bold;
+    font-size: 300%;
+}
+
+h3
+{
+    font-family: "Montserrat";
+    font-weight: bold;
+}
+.container-fluid
+{
+    padding: 3% 15% 6%;
+}
+
+.download
+{
+    margin: 5% 3% 2% 0;
+
+}
+
+.navbar
+{
+    padding-bottom: 4.5%;
+}
+
+.nav-item
+{
+    padding: 0 18px;
+}
+
+.navbar-brand
+{
+    font-family: "Ubuntu";
+    font-size: 250%;
+    font-weight: bold;
+    color: #fff;
+}
+
+.nav-link
+{
+    font-size: 120%;
+    font-family: "Montserrat";
+    font-weight: lighter;
+}
+
+.iphone
+{
+    width: 20%;
+    transform: rotate(25deg);
+    position: absolute;
+    top: 200px;
+    left: 760px;
+}
+
+#features
+{
+    padding: 7% 15%;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.feature-box
+{
+    text-align: center;
+}
+
+.advantage-text
+{
+    padding: 0 5%;
+    color: #8f8f8f;
+}
+
+.icon
+{
+    color: #ef8172;
+    margin-bottom: 4%;
+}
+
+.icon:hover
+{
+    color: #ff4c68;
+}
+
+#testimonials
+{
+    text-align: center;
+    background-color: #ef8172;
+    color: #fff;
+}
+
+.testimonial-text
+{
+    font-weight: bolder;
+    font-size: 300%;
+}
+.testimonial-image
+{
+    width: 10%;
+    margin: 1%;
+    border-radius: 100%;
+}
+
+.carousel-item
+{
+    padding: 7% 15%;
+}
+
+
+#footer
+{
+    padding: 7% 15%;
+    text-align: center;
+}
+
+.social-icons
+{
+    margin: 20px 10px;
+}
+
+@media (max-width: 1028px) 
+{
+    #title
+    {
+        text-align: center;
+    }
+
+    .iphone
+    {
+        position: static;
+        transform: rotate(0);
+    }
+}

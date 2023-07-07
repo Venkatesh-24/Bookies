@@ -1,0 +1,210 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/signup.css">
+    <title>Signup</title>
+ 
+    <style>
+        #snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #ee1f1f; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+    </style>
+</head>
+
+<body>
+   
+    <div class="container">
+        <div class="title">Signup</div>
+        <form>
+            <div class="user_details">
+                <div class="input_pox">
+                    <span class="datails">Full Name</span>
+                    <input type="text"  id="fullName" placeholder="Enter your name" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails" >Username</span>
+                    <input type="text" id="userName" placeholder="Enter your Username" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Email</span>
+                    <input type="text" id="email" placeholder="Enter your Email" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Phone Number</span>
+                    <input type="text"  id="mobileNumber" placeholder="Enter your Phone" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Password</span>
+                    <input type="password" id="password" placeholder="Enter your Password" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Confirm Password</span>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your Password" required>
+                </div>
+            </div>
+            <div class="gender_details">
+                <input type="radio" name="gender" id="dot-1" value="Male">
+                <input type="radio" name="gender" id="dot-2" value="Female">
+                <span class="gender_title"> Gender</span>
+                <div class="category">
+                    <label for="dot-1">
+                        <span class="dot one"></span>
+                        <span class="gender">Male</span>
+                    </label>
+                    <label for="dot-2">
+                        <span class="dot two"></span>
+                        <span class="gender">Female</span>
+                    </label>
+                </div>
+            </div>
+            <div class="button">
+                <input type="button" value="Signup" onclick="validate()">
+            </div>
+        </form>
+    </div>
+    <div id="snackbar"></div>
+
+    <script>
+
+function showSuccessToast() {
+  // toast in green color
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+        function validate()
+        {
+            snackbar = document.getElementById('snackbar');
+
+            var fullName = document.getElementById('fullName').value.trim();
+            var fullNamePattern = /^[A-Za-z -]+$/;
+            var minLength = 8; var maxLength = 30;
+
+            var userName = document.getElementById('userName').value.trim();
+            var usernamePattern = /^[a-zA-Z0-9_]+$/;
+
+            var email = document.getElementById('email').value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            var password = document.getElementById('password').value;
+
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            var mobileNumber = document.getElementById('mobileNumber').value;
+            var mobileNumberPattern = /^[0-9]+$/;
+            var minMobileNumberLength = 7; var maxMobileNumberLength = 15;
+
+            var selectedGender = document.querySelector('input[name="gender"]:checked');
+            var gender = '';
+            
+
+            if (fullName === "" || !fullNamePattern.test(fullName) || fullName.length < minLength || fullName.length > maxLength) {
+                console.log("1");
+                snackbar.innerHTML = 'Full Name is not valid';
+                showSuccessToast();
+                return;
+            }
+
+            if (userName === "" || !usernamePattern.test(userName) || userName.length < minLength || userName.length > maxLength) {
+                console.log("2");
+                snackbar.innerHTML = 'User Name is not valid';
+                showSuccessToast();
+                return;
+            }
+
+            if (!emailPattern.test(email)) {
+                console.log("3");
+                snackbar.innerHTML = 'Email is not valid';
+                  showSuccessToast();
+                return;
+            }
+
+            if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password) ||!/[!@#$%^&*]/.test(password)) {
+                console.log("5");
+                snackbar.innerHTML = 'Password is not valid';
+                showSuccessToast();
+                return;
+            }
+
+            if (!mobileNumberPattern.test(mobileNumber) || mobileNumber.length < minMobileNumberLength || mobileNumber.length > maxMobileNumberLength) {
+                console.log("6");
+                snackbar.innerHTML = 'Mobile Number is not valid';
+                showSuccessToast();
+                return;
+            }
+
+            if(confirmPassword !== password){
+                console.log("7");
+                snackbar.innerHTML = 'Passwords do not match';
+                  showSuccessToast();
+                return;
+            }
+
+            if (selectedGender) {
+                console.log("11");
+                gender = selectedGender.value;
+            }
+
+            if(gender !== 'Male' && gender !== 'Female'){
+                console.log("8");
+                snackbar.innerHTML = 'Invalid Gender';
+                showSuccessToast();
+                return;
+            }
+
+            localStorage.setItem('isLoggedIn', 'true');
+
+            console.log(localStorage.getItem('isLoggedIn'));
+
+            window.location.href = 'userPage.html';
+         
+        }
+    </script>
+
+</body>
+
+</html>
